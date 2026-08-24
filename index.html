@@ -1,0 +1,177 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <!-- Line 7: Browser tab title -->
+<title>★ MYWEB ★</title>
+  
+  <script src="fabric.min.js"></script>
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+
+  <!-- Signature Gate Modal -->
+  <div id="signature-modal" class="modal-overlay">
+    <div class="window-card">
+      <div class="window-header">
+        <span class="window-title">✦ ENTRY_GATEWAY.EXE</span>
+        <div class="window-dots"><span></span><span></span><span></span></div>
+      </div>
+      <div class="modal-body">
+        <h2>★ SIGN TO ENTER ★</h2>
+        <p>Make your signature before entering your board!</p>
+        <div class="canvas-wrapper">
+          <canvas id="signature-pad" width="340" height="140"></canvas>
+        </div>
+        <div class="modal-actions">
+          <button id="clear-sig-btn" class="y2k-btn secondary">Clear</button>
+          <button id="save-sig-btn" class="y2k-btn primary">ENTER BOARD →</button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Y2K Sticker Vault Modal -->
+  <div id="sticker-modal" class="modal-overlay hidden">
+    <div class="window-card">
+      <div class="window-header">
+        <span class="window-title">✦ STICKER_VAULT.EXE</span>
+        <button class="close-modal-btn" id="close-sticker-btn">✕</button>
+      </div>
+      <div class="modal-body">
+        <h2>★ CHOOSE A STICKER ★</h2>
+        <div class="sticker-grid">
+          <button class="sticker-option" data-sticker="cd">💿 CD-ROM</button>
+          <button class="sticker-option" data-sticker="heart">💖 Cyber Heart</button>
+          <button class="sticker-option" data-sticker="flower">🌸 Retro Flower</button>
+          <button class="sticker-option" data-sticker="sparkle">✨ Sparkle</button>
+          <button class="sticker-option" data-sticker="tamagotchi">📟 Pet Console</button>
+          <button class="sticker-option" data-sticker="alien">👽 Cyber Alien</button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Y2K Full-Body Avatar Builder Modal -->
+  <div id="avatar-modal" class="modal-overlay hidden">
+    <div class="window-card wide">
+      <div class="window-header">
+        <span class="window-title">✦ FULLBODY_AVATAR_STUDIO.EXE</span>
+        <button class="close-modal-btn" id="close-avatar-btn">✕</button>
+      </div>
+      <div class="modal-body avatar-body">
+        <div class="avatar-preview-box">
+          <svg id="avatar-svg" viewBox="0 0 200 320" width="180" height="288">
+            <!-- Tail Base -->
+            <g id="layer-tail"></g>
+            <!-- Body/Skin Base -->
+            <g id="layer-body">
+              <path d="M 85 90 L 80 270 L 95 270 L 98 160 L 102 160 L 105 270 L 120 270 L 115 90 Z" fill="#d09a74" stroke="#000" stroke-width="2.5"/>
+              <!-- Head -->
+              <ellipse cx="100" cy="55" rx="28" ry="25" fill="#d09a74" stroke="#000" stroke-width="2.5"/>
+              <!-- Face Details -->
+              <circle cx="88" cy="55" r="2.5" fill="#000"/>
+              <circle cx="112" cy="55" r="2.5" fill="#000"/>
+              <path d="M 96 63 Q 100 66 104 63" fill="none" stroke="#000" stroke-width="2"/>
+              <!-- Whiskers/Blush Marks -->
+              <line x1="78" y1="60" x2="84" y2="58" stroke="#fff" stroke-width="1.5"/>
+              <line x1="78" y1="63" x2="84" y2="62" stroke="#fff" stroke-width="1.5"/>
+              <line x1="116" y1="58" x2="122" y2="60" stroke="#fff" stroke-width="1.5"/>
+              <line x1="116" y1="62" x2="122" y2="63" stroke="#fff" stroke-width="1.5"/>
+            </g>
+            <!-- Outfit Layer -->
+            <g id="layer-outfit"></g>
+            <!-- Shoes Layer -->
+            <g id="layer-shoes"></g>
+            <!-- Hair Layer -->
+            <g id="layer-hair"></g>
+            <!-- Ears Layer -->
+            <g id="layer-ears"></g>
+            <!-- Hand Accessory Layer (Teddy) -->
+            <g id="layer-hand"></g>
+          </svg>
+        </div>
+
+        <div class="avatar-controls">
+          <div class="control-group">
+            <label>Hair Style:</label>
+            <button class="y2k-btn mini option-btn" data-type="hair" data-val="twin">Long Pigtails</button>
+            <button class="y2k-btn mini option-btn" data-type="hair" data-val="buns">Space Buns</button>
+            <button class="y2k-btn mini option-btn" data-type="hair" data-val="short">Bob</button>
+          </div>
+
+          <div class="control-group">
+            <label>Outfit:</label>
+            <button class="y2k-btn mini option-btn" data-type="outfit" data-val="hoodie">Oversized Hoodie & Cargo</button>
+            <button class="y2k-btn mini option-btn" data-type="outfit" data-val="skirt">Track Jacket & Skirt</button>
+          </div>
+
+          <div class="control-group">
+            <label>Ears & Tail:</label>
+            <button class="y2k-btn mini option-btn" data-type="ears" data-val="cat">Kitty Set</button>
+            <button class="y2k-btn mini option-btn" data-type="ears" data-val="bear">Bear Set</button>
+            <button class="y2k-btn mini option-btn" data-type="ears" data-val="none">None</button>
+          </div>
+
+          <div class="control-group">
+            <label>Held Accessory:</label>
+            <button class="y2k-btn mini option-btn" data-type="hand" data-val="bear">Plushie Bear</button>
+            <button class="y2k-btn mini option-btn" data-type="hand" data-val="none">None</button>
+          </div>
+
+          <button id="stamp-avatar-btn" class="y2k-btn primary" style="margin-top:6px; width:100%;">STAMP AVATAR TO BOARD ★</button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Main App Layout -->
+  <div id="main-content" class="blurred">
+    <header class="top-bar">
+      <div class="logo"><span class="star-icon">✦</span> MYWEB</div>
+
+      <div class="y2k-toolbar">
+        <button id="add-note-btn" class="y2k-btn mini">📝 Note</button>
+        <button id="add-star-btn" class="y2k-btn mini">⭐ Star</button>
+        <button id="open-stickers-btn" class="y2k-btn mini">🎁 Stickers</button>
+        <button id="open-avatar-btn" class="y2k-btn mini">👾 Avatar</button>
+        <label for="image-upload" class="y2k-btn mini upload-label">📸 Photo</label>
+        <input type="file" id="image-upload" accept="image/*" style="display: none;">
+        <button id="delete-selected-btn" class="y2k-btn mini secondary">🗑️ Delete</button>
+      </div>
+
+      <div class="top-right-section">
+        <div class="signature-display-box">
+          <span class="label">SIGNED:</span>
+          <div id="saved-signature-container"></div>
+        </div>
+        <button id="re-sign-btn" class="y2k-btn mini">Re-Sign</button>
+      </div>
+    </header>
+
+    <!-- Google Search Engine Centerpiece -->
+    <div class="search-section-wrapper">
+      <div class="google-logo-y2k">Google</div>
+      <form id="google-search-form" class="search-bar-container">
+        <span class="search-icon">🔍</span>
+        <input type="text" id="google-search-input" placeholder="Ask Google or type a URL..." autocomplete="off">
+        <button type="submit" class="search-submit-btn">Search</button>
+      </form>
+      <div class="quick-shortcuts">
+        <a href="https://chatgpt.com" class="shortcut-item" target="_blank"><span>🤖</span>ChatGPT</a>
+        <a href="https://youtube.com" class="shortcut-item" target="_blank"><span>▶️</span>YouTube</a>
+        <a href="https://pinterest.com" class="shortcut-item" target="_blank"><span>📌</span>Pinterest</a>
+        <a href="https://instagram.com" class="shortcut-item" target="_blank"><span>📷</span>Instagram</a>
+      </div>
+    </div>
+
+    <!-- Interactive Canvas Board -->
+    <main class="board-container">
+      <canvas id="interactive-board"></canvas>
+    </main>
+  </div>
+
+  <script src="main.js"></script>
+</body>
+</html>

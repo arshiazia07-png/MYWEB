@@ -1,0 +1,237 @@
+:root {
+  --bg-color: #ffd6f3;
+  --card-bg: #e2f0ff;
+  --accent-pink: #ff91d7;
+  --accent-yellow: #fff385;
+  --accent-green: #b2fba5;
+  --border-color: #000000;
+}
+
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+body {
+  background-color: var(--bg-color);
+  background-image: radial-gradient(#ff91d7 1.5px, transparent 1.5px);
+  background-size: 24px 24px;
+  font-family: 'Comic Sans MS', 'Chalkboard SE', 'Fredoka', sans-serif;
+  height: 100vh;
+  width: 100vw;
+  overflow: hidden;
+}
+
+#main-content {
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  position: relative;
+}
+
+#main-content.blurred {
+  filter: blur(8px);
+}
+
+/* Navbar */
+.top-bar {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 10px 20px;
+  background: #ffffff;
+  border-bottom: 3.5px solid var(--border-color);
+  box-shadow: 0 4px 0px rgba(0,0,0,0.15);
+  z-index: 20;
+}
+
+.logo { font-size: 1.4rem; font-weight: 800; color: #000; }
+.star-icon { color: var(--accent-pink); }
+.top-right-section { display: flex; align-items: center; gap: 12px; }
+
+.signature-display-box {
+  display: flex; align-items: center; gap: 8px;
+  background: var(--accent-yellow);
+  border: 2px solid #000; border-radius: 6px;
+  padding: 4px 10px; box-shadow: 3px 3px 0px #000;
+}
+
+.signature-display-box .label { font-weight: bold; font-size: 0.9rem; }
+#saved-signature-container img { max-height: 30px; display: block; }
+
+.y2k-toolbar {
+  display: flex; gap: 8px; align-items: center;
+  background: var(--card-bg); padding: 6px 12px;
+  border: 2px solid #000; border-radius: 8px;
+  box-shadow: 3px 3px 0px #000;
+}
+
+.upload-label { display: inline-block; margin: 0; }
+
+/* Google Search Widget Centerpiece */
+.search-section-wrapper {
+  position: absolute;
+  top: 95px;
+  left: 50%;
+  transform: translateX(-50%);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  z-index: 10;
+  pointer-events: auto;
+}
+
+.google-logo-y2k {
+  font-size: 3.2rem;
+  font-weight: 900;
+  letter-spacing: -1px;
+  color: #000;
+  text-shadow: 3px 3px 0px var(--accent-pink), 6px 6px 0px var(--accent-yellow);
+  margin-bottom: 10px;
+}
+
+.search-bar-container {
+  display: flex;
+  align-items: center;
+  background: #ffffff;
+  border: 3px solid #000;
+  border-radius: 30px;
+  padding: 6px 18px;
+  width: 520px;
+  box-shadow: 5px 5px 0px #000;
+}
+
+.search-icon { font-size: 1.1rem; margin-right: 10px; }
+
+#google-search-input {
+  border: none;
+  outline: none;
+  width: 100%;
+  font-size: 1rem;
+  font-family: inherit;
+  background: transparent;
+}
+
+.search-submit-btn {
+  background: var(--accent-pink);
+  border: 2px solid #000;
+  border-radius: 20px;
+  padding: 4px 12px;
+  font-weight: bold;
+  cursor: pointer;
+  box-shadow: 2px 2px 0px #000;
+}
+
+.quick-shortcuts {
+  display: flex;
+  gap: 16px;
+  margin-top: 14px;
+}
+
+.shortcut-item {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-decoration: none;
+  color: #000;
+  font-size: 0.8rem;
+  font-weight: bold;
+}
+
+.shortcut-item span {
+  width: 44px;
+  height: 44px;
+  background: #ffffff;
+  border: 2.5px solid #000;
+  border-radius: 50%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-size: 1.3rem;
+  box-shadow: 3px 3px 0px #000;
+  margin-bottom: 4px;
+  transition: transform 0.1s;
+}
+
+.shortcut-item:hover span { transform: translate(-2px, -2px); background: var(--accent-yellow); }
+
+/* Modals Overlay */
+.modal-overlay {
+  position: fixed; top: 0; left: 0;
+  width: 100vw; height: 100vh;
+  background: rgba(255, 182, 230, 0.45);
+  backdrop-filter: blur(4px);
+  display: flex; justify-content: center; align-items: center;
+  z-index: 99999;
+}
+
+.modal-overlay.hidden { display: none !important; }
+
+.window-card {
+  background: var(--card-bg);
+  border: 3.5px solid var(--border-color);
+  border-radius: 12px;
+  box-shadow: 8px 8px 0px var(--border-color);
+  width: 380px; overflow: hidden; position: relative;
+}
+
+.window-card.wide { width: 540px; }
+
+.window-header {
+  background: var(--accent-pink);
+  border-bottom: 3.5px solid var(--border-color);
+  padding: 8px 14px;
+  display: flex; justify-content: space-between; align-items: center;
+}
+
+.window-title { font-weight: bold; font-size: 1.1rem; }
+
+.close-modal-btn {
+  background: #ffb3b3; border: 2px solid #000;
+  border-radius: 4px; font-weight: bold; cursor: pointer; padding: 0 6px;
+}
+
+.modal-body { padding: 16px; text-align: center; }
+.modal-body h2 { font-size: 1.2rem; color: #000; margin-bottom: 4px; }
+.modal-body p { font-size: 0.85rem; color: #444; margin-bottom: 12px; }
+
+.canvas-wrapper {
+  background: #ffffff; border: 3px solid var(--border-color);
+  border-radius: 8px; box-shadow: 4px 4px 0px var(--border-color);
+  display: inline-block; margin-bottom: 12px;
+}
+
+#signature-pad { cursor: crosshair; touch-action: none; display: block; }
+
+.modal-actions { display: flex; gap: 10px; justify-content: center; }
+
+/* Y2K Buttons */
+.y2k-btn {
+  font-family: inherit; font-size: 0.9rem; font-weight: 700;
+  padding: 6px 14px; border: 2px solid var(--border-color);
+  border-radius: 8px; cursor: pointer; box-shadow: 3px 3px 0px var(--border-color);
+}
+
+.y2k-btn.primary { background: var(--accent-green); }
+.y2k-btn.secondary { background: var(--accent-pink); }
+.y2k-btn.mini { padding: 4px 8px; font-size: 0.8rem; background: var(--accent-yellow); }
+
+.sticker-grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: 10px; margin-top: 10px; }
+.sticker-option {
+  font-family: inherit; font-size: 0.9rem; padding: 10px;
+  background: #fff; border: 2px solid #000; border-radius: 8px;
+  box-shadow: 3px 3px 0px #000; cursor: pointer;
+}
+
+.avatar-body { display: flex; gap: 16px; align-items: flex-start; }
+
+.avatar-preview-box {
+  background: #fff; border: 3px solid #000;
+  border-radius: 10px; padding: 6px; box-shadow: 3px 3px 0px #000;
+}
+
+.avatar-controls { flex: 1; display: flex; flex-direction: column; gap: 6px; text-align: left; }
+.control-group label { font-size: 0.8rem; font-weight: bold; display: block; margin-bottom: 2px; }
+
+.board-container { padding: 0; flex: 1; width: 100vw; height: calc(100vh - 65px); position: relative; }
